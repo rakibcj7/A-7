@@ -24,9 +24,23 @@ const dbName = process.env.BETTER_AUTH_DB_NAME || process.env.MONGODB_DB_NAME ||
 const db = client.db(dbName);
 
 const googleClientId = process.env.BETTER_AUTH_GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID || '';
-         const googleClientSecret = process.env.BETTER_AUTH_GOOGLE_SECRET || process.env.GOOGLE_CLIENT_SECRET || '';
+const googleClientSecret = process.env.BETTER_AUTH_GOOGLE_SECRET || process.env.GOOGLE_CLIENT_SECRET || '';
 const githubClientId = process.env.BETTER_AUTH_GITHUB_CLIENT_ID || process.env.GITHUB_CLIENT_ID || '';
 const githubClientSecret = process.env.BETTER_AUTH_GITHUB_SECRET || process.env.GITHUB_CLIENT_SECRET || '';
+
+const appBaseUrl =
+  process.env.BETTER_AUTH_URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+
+const trustedOrigins = Array.from(
+  new Set([
+    appBaseUrl,
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+  ].filter(Boolean))
+);
 
 const socialProviders: Record<string, { clientId: string; clientSecret: string }> = {};
 
@@ -39,6 +53,8 @@ if (githubClientId && githubClientSecret) {
 }
 
 export const auth = betterAuth({
+  baseURL: appBaseUrl,
+  trustedOrigins,
   database: mongodbAdapter(db, { client }),
   socialProviders,
   plugins: [nextCookies()],
