@@ -118,3 +118,23 @@ src/
 | ট্যাবলেট | `640px - 1024px` | ২ কলাম |
 | ডেস্কটপ | `> 1024px` | ৩-৪ কলাম |
 
+## 🚀 ডিপ্লয়মেন্ট (Vercel)
+
+১. Vercel-এ প্রজেক্ট ইম্পোর্ট করুন
+২. Environment Variables যোগ করুন:
+   - `BETTER_AUTH_SECRET`
+   - `BETTER_AUTH_URL` (production URL)
+   - `GOOGLE_CLIENT_ID` & `GOOGLE_CLIENT_SECRET`
+   - `GITHUB_CLIENT_ID` & `GITHUB_CLIENT_SECRET`
+৩. ডিপ্লয় করুন
+
+> **দ্রষ্টব্য**: Dynamic routes (`[slug]`) Vercel-এ রিফ্রেশ করলেও 404 দেবে না।
+
+## 📝 লাইসেন্স
+
+এই প্রজেক্টটি শैक्षिणিক উদ্দেশ্যে তৈরি করা হয়েছে।
+
+---
+
+**বিকাশকারী**: B14 Assignment Team  
+**ডেডলাইন**: ১০ অক্টোবর ২০২৬ (৬০ মার্কের জন্য)
