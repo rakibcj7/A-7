@@ -64,7 +64,6 @@ export function Navbar() {
     fetch(`${API_URL}/categories`)
       .then(res => res.ok ? res.json() : Promise.reject())
       .then(data => {
-        // API returns a raw array, not { categories: [...] }
         const cats = Array.isArray(data) ? data : (data.categories || fallbackCategories);
         setCategories(cats.length > 0 ? cats : fallbackCategories);
       })
@@ -75,7 +74,6 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
-      {/* Top Row - Logo & Date */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3" aria-label="বাজার দর - হোম">
@@ -86,7 +84,6 @@ export function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop Auth Buttons / User Menu */}
           <div className="hidden md:flex items-center gap-2">
             {sessionLoading ? (
               <div className="h-9 w-20 bg-gray-200 rounded animate-pulse" />
@@ -146,7 +143,6 @@ export function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -165,7 +161,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Category Navigation Row */}
       <nav className="bg-gray-50 border-t border-gray-200" aria-label="ক্যাটেগরি নেভিগেশন">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-1 overflow-x-auto pb-2 px-2 -mx-2" role="tablist">
@@ -191,7 +186,6 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div id="mobile-menu" className="md:hidden bg-white border-t border-gray-200 animate-slide-down">
           <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
@@ -249,7 +243,6 @@ export function Navbar() {
         </div>
       )}
 
-      {/* Price Ticker Marquee */}
       <div className="bg-primary/10 border-t border-gray-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex animate-marquee" aria-live="polite" aria-label="দামের টিকর">
@@ -269,7 +262,6 @@ export function Navbar() {
                 <span className="text-gray-300 mx-2">•</span>
               </div>
             ))}
-            {/* Duplicate for seamless loop */}
             {tickerItems.map((item, i) => (
               <div key={`dup-${i}`} className="flex items-center gap-2 px-4 py-2 whitespace-nowrap shrink-0">
                 <span className="text-lg">{item.emoji}</span>

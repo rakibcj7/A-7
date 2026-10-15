@@ -31,7 +31,6 @@ export default async function HomePage() {
 
   return (
     <div className="container py-8">
-      {/* Hero Section */}
       <section className="mb-12" aria-labelledby="hero-heading">
         <div className="grid lg:grid-cols-2 gap-8 items-center bg-white p-6 sm:p-10 rounded-[28px] border border-[#E5E7EB] shadow-[0_1px_2px_rgba(17,17,17,0.04)]">
           <div>
@@ -66,7 +65,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Price Risers Section */}
       <section id="আজ-দাম-বেড়েছে" className="mb-10" aria-labelledby="risers-heading">
         <div className="flex items-center justify-between mb-6">
           <h2 id="risers-heading" className="text-2xl font-bold text-[#111111] flex items-center gap-2">
@@ -86,7 +84,6 @@ export default async function HomePage() {
         )}
       </section>
 
-      {/* Price Fallers Section */}
       <section id="আজ-দাম-কমেছে" className="mb-10" aria-labelledby="fallers-heading">
         <div className="flex items-center justify-between mb-6">
           <h2 id="fallers-heading" className="text-2xl font-bold text-[#111111] flex items-center gap-2">
@@ -106,7 +103,6 @@ export default async function HomePage() {
         )}
       </section>
 
-      {/* All Products Section */}
       <section id="সব-পণ্য" aria-labelledby="all-products-heading">
         <div className="flex items-center justify-between mb-6">
           <h2 id="all-products-heading" className="text-2xl font-bold text-[#111111]">সব পণ্য</h2>

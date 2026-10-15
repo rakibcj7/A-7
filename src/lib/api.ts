@@ -4,11 +4,14 @@ async function fetchAPI<T>(endpoint: string): Promise<T> {
   const response = await fetch(`${BASE_URL}${endpoint}`, {
     next: { revalidate: 60 },
   });
-  if (!response.ok) throw new Error(`API failed: ${response.status}`);
+
+  if (!response.ok) {
+    throw new Error(`API failed: ${response.status}`);
+  }
+
   return response.json();
 }
 
-// Raw shape from the API for a single product
 interface RawProduct {
   id: number;
   slug: string;
@@ -34,7 +37,6 @@ interface RawProduct {
   }[];
 }
 
-// Raw shape from the API for a category
 interface RawCategory {
   id: string;
   slug: string;
@@ -42,7 +44,6 @@ interface RawCategory {
   icon: string;
 }
 
-// Normalized product used throughout the app
 export interface NormalizedProduct {
   id: number;
   slug: string;
@@ -55,7 +56,7 @@ export interface NormalizedProduct {
   yesterday: number;
   lastWeek: number;
   lastMonth: number;
-  change: number; // percentage, positive = price went up
+  change: number;
   markets: {
     market: string;
     division: string;
@@ -64,7 +65,6 @@ export interface NormalizedProduct {
   }[];
 }
 
-// Normalized category used throughout the app
 export interface NormalizedCategory {
   id: string;
   slug: string;
@@ -108,25 +108,21 @@ function normalizeCategory(raw: RawCategory): NormalizedCategory {
 
 export async function getProducts(category?: string): Promise<NormalizedProduct[]> {
   const endpoint = category ? `/products?category=${category}` : '/products';
-  // API returns a raw array, not { products: [...] }
   const data = await fetchAPI<RawProduct[]>(endpoint);
   return (data || []).map(normalizeProduct);
 }
 
-           export async function getProduct(slug: string): Promise<NormalizedProduct | null> {
-  // There is no single-product endpoint — fetch all and find by slug
+export async function getProduct(slug: string): Promise<NormalizedProduct | null> {
   const products = await getProducts();
-  return products.find((p) => p.slug === slug) || null;
+  return products.find((product) => product.slug === slug) || null;
 }
 
 export async function getCategories(): Promise<NormalizedCategory[]> {
-  // API returns a raw array, not { categories: [...] }
   const data = await fetchAPI<RawCategory[]>('/categories');
   return (data || []).map(normalizeCategory);
 }
 
 export async function getCategory(slug: string): Promise<NormalizedCategory | null> {
-  // There is no single-category endpoint — fetch all and find by slug
   const categories = await getCategories();
-         return categories.find((c) => c.id === slug || c.slug === slug) || null;
+  return categories.find((category) => category.id === slug || category.slug === slug) || null;
 }

@@ -1,8 +1,9 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
 import { getProduct } from '@/lib/api';
 import { toBengaliDigits } from '@/types';
-import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,7 +13,8 @@ interface ProductPageProps {
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-           const product = await getProduct(slug);
+  const product = await getProduct(slug);
+
   return {
     title: `${product?.name || 'পণ্য'} | বাজার দর`,
     description: `${product?.name || 'পণ্য'} এর বিস্তারিত দাম তথ্য, বাজারভিত্তিক দাম এবং পরিসংখ্যান।`,
@@ -24,17 +26,17 @@ function formatPrice(price: number): string {
 }
 
 function getChangeBadge(change: number) {
-            const isPositive = change > 0;
+  const isPositive = change > 0;
   const isNegative = change < 0;
   const absChange = Math.abs(change).toFixed(1);
-  
+
   if (isPositive) return { label: `▲ ${absChange}%`, className: 'badge-success' };
   if (isNegative) return { label: `▼ ${absChange}%`, className: 'badge-error' };
   return { label: `— ${absChange}%`, className: 'badge-neutral' };
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-           const { slug } = await params;
+  const { slug } = await params;
   const product = await getProduct(slug);
 
   if (!product) {
@@ -42,27 +44,26 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   const changeBadge = getChangeBadge(product.change);
-
-  // Use the real market data from the API
-       const marketPrices = product.markets || [];
-  const allMarketPrices = marketPrices.flatMap(m => [m.min, m.max]);
+  const marketPrices = product.markets || [];
+  const allMarketPrices = marketPrices.flatMap((market) => [market.min, market.max]);
   const minPrice = allMarketPrices.length > 0 ? Math.min(...allMarketPrices) : product.price;
   const maxPrice = allMarketPrices.length > 0 ? Math.max(...allMarketPrices) : product.price;
   const avgPrice = allMarketPrices.length > 0
-    ? Math.round(allMarketPrices.reduce((a, b) => a + b, 0) / allMarketPrices.length)
+    ? Math.round(allMarketPrices.reduce((total, value) => total + value, 0) / allMarketPrices.length)
     : product.price;
 
   let lowestMarket = marketPrices[0];
-           let highestMarket = marketPrices[0];
-  marketPrices.forEach(m => {
-    if (lowestMarket && m.min < lowestMarket.min) lowestMarket = m;
-    if (highestMarket && m.max > highestMarket.max) highestMarket = m;
+  let highestMarket = marketPrices[0];
+
+  marketPrices.forEach((market) => {
+    if (lowestMarket && market.min < lowestMarket.min) lowestMarket = market;
+    if (highestMarket && market.max > highestMarket.max) highestMarket = market;
   });
 
   return (
     <div className="min-h-screen bg-[#F5F7F8]">
       <div className="mx-auto max-w-[1152px] px-4 pb-12 pt-6 md:px-6 xl:px-0">
-                <nav aria-label="Breadcrumb" className="mb-6">
+        <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex flex-wrap items-center gap-2 text-sm text-[#6B7280]">
             <li>
               <Link href="/" className="transition-colors hover:text-[#16A34A]">
@@ -74,7 +75,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <Link
                 href={product.category === 'chal' ? '/' : `/category/${product.category}`}
                 className="transition-colors hover:text-[#16A34A]"
-               >
+              >
                 {product.categoryName}
               </Link>
             </li>
@@ -82,11 +83,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <li className="font-medium text-[#111827]">{product.name}</li>
           </ol>
         </nav>
- 
+
         <section className="rounded-[24px] border border-[#E5E7EB] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
           <div className="p-6 md:p-8">
             <div className="flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
-                     <div className="flex items-center gap-5">
+              <div className="flex items-center gap-5">
                 <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[#EAF7EE] text-4xl shadow-inner shadow-[#E5E7EB]">
                   {product.emoji}
                 </div>

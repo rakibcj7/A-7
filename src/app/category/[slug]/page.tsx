@@ -29,12 +29,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     getCategories(),
   ]);
 
-
-
   const categoryName = category?.name || slug;
   const categoryEmoji = category?.emoji || '📦';
 
-  if (!categories.some((c) => c.id === slug || c.slug === slug) && products.length === 0) {
+  if (!categories.some((item) => item.id === slug || item.slug === slug) && products.length === 0) {
     notFound();
   }
 
@@ -44,10 +42,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         products={products}
         categoryName={categoryName}
         categoryEmoji={categoryEmoji}
-      /> 
+      />
 
-                {products.length === 0 && (
-        <div className="text-center mt-4">
+      {products.length === 0 && (
+        <div className="mt-4 text-center">
           <Link href="/">
             <Button className="w-full sm:w-auto">হোম পেজে ফিরে যান</Button>
           </Link>

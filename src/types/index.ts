@@ -37,23 +37,36 @@ export interface AuthState {
   isLoading: boolean;
 }
 
-export type SortOption = 'default' | 'price-asc' | 'price-desc';
+export type SortOption = 0 | 1 | 2;
 
 export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
-  { value: 'default', label: 'ডিফল্ট' },
-  { value: 'price-asc', label: 'দাম: কম থেকে বেশি' },
-  { value: 'price-desc', label: 'দাম: বেশি থেকে কম' },
+  { value: 0, label: 'ডিফল্ট' },
+  { value: 1, label: 'দাম: কম থেকে বেশি' },
+  { value: 2, label: 'দাম: বেশি থেকে কম' },
 ];
+
+export function sortProducts<T extends { price: number }>(products: T[], sort: SortOption): T[] {
+  const list = [...products];
+
+  switch (sort) {
+    case 1:
+      return list.sort((a, b) => a.price - b.price);
+    case 2:
+      return list.sort((a, b) => b.price - a.price);
+    default:
+      return list;
+  }
+}
 
 export const BENGALI_DIGITS = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
 
-     export function toBengaliDigits(num: number | string): string {
+export function toBengaliDigits(num: number | string): string {
   return String(num).replace(/\d/g, (d) => BENGALI_DIGITS[parseInt(d, 10)]);
 }
 
 export function fromBengaliDigits(str: string): number {
   return parseInt(
     str.replace(/[০-৯]/g, (d) => BENGALI_DIGITS.indexOf(d).toString()),
-    10
+    10,
   );
 }
