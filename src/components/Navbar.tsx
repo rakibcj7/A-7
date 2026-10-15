@@ -127,7 +127,7 @@ export function Navbar() {
                     </Link>
                     <button
                       onClick={handleSignOut}
-                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                      className="w-full text-left px-4 py-2 text-sm font-medium text-red-600 border border-transparent rounded-md hover:border-red-200 hover:bg-red-50 transition-colors"
                     >
                       🚪 লগআউট
                     </button>
