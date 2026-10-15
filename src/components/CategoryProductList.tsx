@@ -32,7 +32,7 @@ export function CategoryProductList({
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
               {categoryName}
             </h1>
-            <p className="text-sm text-gray-700 dark:text-gray-300">
+            <p className="text-sm text-black dark:text-white">
               মোট {products.length} টি পণ্য
             </p>
           </div>
@@ -42,7 +42,7 @@ export function CategoryProductList({
           <div className="flex items-center gap-3">
             <label
               htmlFor="sort-select"
-              className="whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white"
+              className="whitespace-nowrap text-sm font-medium text-black dark:text-white"
             >
               সাজান:
             </label>
@@ -51,7 +51,7 @@ export function CategoryProductList({
               name="sort"
               value={sort}
               onChange={(event) => setSort(Number(event.target.value) as SortOption)}
-              className="input w-auto min-w-[200px] cursor-pointer bg-white text-gray-900 dark:bg-gray-800 dark:text-white"
+              className="input w-auto min-w-[200px] cursor-pointer bg-white text-black dark:bg-gray-800 dark:text-white"
             >
               {SORT_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -78,7 +78,7 @@ export function CategoryProductList({
           <h2 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
             এই ক্যাটেগরিতে কোনো পণ্য নেই
           </h2>
-          <p className="mb-6 text-gray-700 dark:text-gray-300">
+          <p className="mb-6 text-black dark:text-white">
             ফিলহাল {categoryName} ক্যাটেগরিতে কোনো পণ্য উপলব্ধ নেই।
           </p>
         </div>
