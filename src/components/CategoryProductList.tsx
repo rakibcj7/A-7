@@ -29,10 +29,10 @@ export function CategoryProductList({
             {categoryEmoji}
           </span>
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-3xl font-bold text-black ">
               {categoryName}
             </h1>
-            <p className="text-sm text-black dark:text-white">
+            <p className="text-sm text-black">
               মোট {products.length} টি পণ্য
             </p>
           </div>
@@ -75,7 +75,7 @@ export function CategoryProductList({
       ) : (
         <div className="py-16 text-center">
           <div className="mb-4 text-6xl">{categoryEmoji}</div>
-          <h2 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
+          <h2 className="mb-2 text-xl font-semibold text-black dark:text-white">
             এই ক্যাটেগরিতে কোনো পণ্য নেই
           </h2>
           <p className="mb-6 text-black dark:text-white">
