@@ -42,7 +42,7 @@ https://ajker-dor-a7.vercel.app/
 
 ### ১. রিপোজিটরি ক্লোন করুন
 ```bash
-git clone <repository-url>
+git clone https://github.com/rakibcj7/A-7
 cd bazar-dor
 ```
 
