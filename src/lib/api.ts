@@ -72,7 +72,14 @@ export interface NormalizedCategory {
   emoji: string;
 }
 
-function normalizeProduct(raw: RawProduct): NormalizedProduct {
+export function normalizeProduct(raw: RawProduct): NormalizedProduct {
+  const pct = Number(raw.change?.pct ?? 0);
+  const change = raw.change?.dir === 'down'
+    ? Math.abs(pct) * -1
+    : raw.change?.dir === 'up'
+      ? Math.abs(pct)
+      : 0;
+
   return {
     id: raw.id,
     slug: raw.slug,
@@ -85,7 +92,7 @@ function normalizeProduct(raw: RawProduct): NormalizedProduct {
     yesterday: raw.yesterday,
     lastWeek: raw.lastWeek,
     lastMonth: raw.lastMonth,
-    change: raw.change.dir === 'down' ? -raw.change.pct : raw.change.pct,
+    change,
     markets: raw.markets || [],
   };
 }
@@ -106,7 +113,7 @@ export async function getProducts(category?: string): Promise<NormalizedProduct[
   return (data || []).map(normalizeProduct);
 }
 
-export async function getProduct(slug: string): Promise<NormalizedProduct | null> {
+           export async function getProduct(slug: string): Promise<NormalizedProduct | null> {
   // There is no single-product endpoint — fetch all and find by slug
   const products = await getProducts();
   return products.find((p) => p.slug === slug) || null;
@@ -121,5 +128,5 @@ export async function getCategories(): Promise<NormalizedCategory[]> {
 export async function getCategory(slug: string): Promise<NormalizedCategory | null> {
   // There is no single-category endpoint — fetch all and find by slug
   const categories = await getCategories();
-  return categories.find((c) => c.id === slug || c.slug === slug) || null;
+         return categories.find((c) => c.id === slug || c.slug === slug) || null;
 }

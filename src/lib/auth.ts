@@ -24,7 +24,7 @@ const dbName = process.env.BETTER_AUTH_DB_NAME || process.env.MONGODB_DB_NAME ||
 const db = client.db(dbName);
 
 const googleClientId = process.env.BETTER_AUTH_GOOGLE_CLIENT_ID || process.env.GOOGLE_CLIENT_ID || '';
-const googleClientSecret = process.env.BETTER_AUTH_GOOGLE_SECRET || process.env.GOOGLE_CLIENT_SECRET || '';
+         const googleClientSecret = process.env.BETTER_AUTH_GOOGLE_SECRET || process.env.GOOGLE_CLIENT_SECRET || '';
 const githubClientId = process.env.BETTER_AUTH_GITHUB_CLIENT_ID || process.env.GITHUB_CLIENT_ID || '';
 const githubClientSecret = process.env.BETTER_AUTH_GITHUB_SECRET || process.env.GITHUB_CLIENT_SECRET || '';
 
@@ -35,7 +35,7 @@ if (googleClientId && googleClientSecret) {
 }
 
 if (githubClientId && githubClientSecret) {
-  socialProviders.github = { clientId: githubClientId, clientSecret: githubClientSecret };
+          socialProviders.github = { clientId: githubClientId, clientSecret: githubClientSecret };
 }
 
 export const auth = betterAuth({

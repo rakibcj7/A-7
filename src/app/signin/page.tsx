@@ -75,26 +75,26 @@ function SignInContent() {
 
   return (
     <div className="container py-12 md:py-20">
-      <div className="max-w-md mx-auto bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
+      <div className="max-w-md mx-auto bg-white p-8 rounded-2xl border border-[#E5E7EB] shadow-[0_1px_2px_rgba(17,17,17,0.04)]">
         <div className="text-center mb-8">
           <span className="text-4xl mb-3 inline-block">🛒</span>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-2xl font-bold text-[#111111] mb-2">
             বাজার দর এ সাইন ইন করুন
           </h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-[#4B5563]">
             আপনার ইমেইল, Google অথবা GitHub একাউন্ট দিয়ে প্রবেশ করুন
           </p>
         </div>
 
-        <form onSubmit={handleEmailLogin} className="space-y-4">
+                 <form onSubmit={handleEmailLogin} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            <label htmlFor="email" className="block text-sm font-medium text-[#374151] mb-1.5">
               ইমেইল
             </label>
             <input
               id="email"
               type="email"
-              value={email}
+                   value={email}
               onChange={(event) => setEmail(event.target.value)}
               className="input"
               placeholder="you@example.com"
@@ -103,7 +103,7 @@ function SignInContent() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            <label htmlFor="password" className="block text-sm font-medium text-[#374151] mb-1.5">
               পাসওয়ার্ড
             </label>
             <input
@@ -124,10 +124,10 @@ function SignInContent() {
 
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-200 dark:border-gray-700" />
+            <div className="w-full border-t border-[#E5E7EB]" />
           </div>
-          <div className="relative flex justify-center text-xs uppercase tracking-[0.2em] text-gray-400">
-            <span className="bg-white dark:bg-gray-800 px-3">অথবা</span>
+          <div className="relative flex justify-center text-xs uppercase tracking-[0.2em] text-[#9CA3AF]">
+            <span className="bg-white px-3">অথবা</span>
           </div>
         </div>
 
@@ -174,8 +174,8 @@ function SignInContent() {
           </Button>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700 text-center">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+        <div className="mt-8 pt-6 border-t border-[#F1F5F9] text-center">
+          <p className="text-sm text-[#4B5563]">
             একাউন্ট নেই?{' '}
             <Link href="/signup" className="text-primary hover:underline font-medium">
               রেজিস্টার করুন

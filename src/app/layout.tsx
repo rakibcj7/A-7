@@ -29,30 +29,30 @@ export const viewport: Viewport = {
 
 function NavbarFallback() {
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+                <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 animate-pulse">
           <div className="flex items-center gap-3">
             <span className="text-2xl">🛒</span>
-            <div className="h-6 w-32 bg-gray-200 dark:bg-gray-700 rounded" />
-            <div className="h-3 w-48 bg-gray-200 dark:bg-gray-700 rounded" />
+            <div className="h-6 w-32 bg-gray-200 rounded" />
+            <div className="h-3 w-48 bg-gray-200 rounded" />
           </div>
           <div className="hidden md:flex items-center gap-2">
-            <div className="h-9 w-24 bg-gray-200 dark:bg-gray-700 rounded-lg" />
-            <div className="h-9 w-24 bg-gray-200 dark:bg-gray-700 rounded-lg" />
+            <div className="h-9 w-24 bg-gray-200 rounded-lg" />
+            <div className="h-9 w-24 bg-gray-200 rounded-lg" />
           </div>
         </div>
       </div>
-      <nav className="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 animate-pulse">
+      <nav className="bg-gray-50 border-t border-gray-200 animate-pulse">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-          <div className="flex items-center gap-1 overflow-x-auto">
+                    <div className="flex items-center gap-1 overflow-x-auto">
             {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="h-8 w-20 bg-gray-200 dark:bg-gray-700 rounded-full" />
+              <div key={i} className="h-8 w-20 bg-gray-200 rounded-full" />
             ))}
           </div>
         </div>
       </nav>
-      <div className="bg-primary/10 dark:bg-primary/20 border-t border-gray-200 dark:border-gray-800 animate-pulse h-10" />
+      <div className="bg-primary/10 border-t border-gray-200 animate-pulse h-10" />
     </header>
   );
 }
@@ -64,11 +64,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+                     href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 font-sans">
+      <body className="min-h-screen flex flex-col bg-white text-gray-900 font-sans">
         <Suspense fallback={<NavbarFallback />}>
           <Navbar />
         </Suspense>
@@ -80,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             duration: 4000,
             style: {
               background: '#1f2937',
-              color: '#f9fafb',
+                   color: '#f9fafb',
               borderRadius: '0.75rem',
               padding: '1rem',
             },

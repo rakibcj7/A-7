@@ -5,7 +5,7 @@ export function middleware(request: NextRequest) {
   const sessionCookie = getSessionCookie(request);
 
   if (!sessionCookie) {
-    const signinUrl = new URL('/signin', request.url);
+             const signinUrl = new URL('/signin', request.url);
     signinUrl.searchParams.set('callbackUrl', request.nextUrl.pathname);
     signinUrl.searchParams.set('reason', 'required');
     return NextResponse.redirect(signinUrl);

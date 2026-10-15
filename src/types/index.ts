@@ -47,7 +47,7 @@ export const SORT_OPTIONS: { value: SortOption; label: string }[] = [
 
 export const BENGALI_DIGITS = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
 
-export function toBengaliDigits(num: number | string): string {
+     export function toBengaliDigits(num: number | string): string {
   return String(num).replace(/\d/g, (d) => BENGALI_DIGITS[parseInt(d, 10)]);
 }
 

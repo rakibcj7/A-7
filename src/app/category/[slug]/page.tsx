@@ -29,6 +29,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     getCategories(),
   ]);
 
+
+
   const categoryName = category?.name || slug;
   const categoryEmoji = category?.emoji || '📦';
 
@@ -42,9 +44,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         products={products}
         categoryName={categoryName}
         categoryEmoji={categoryEmoji}
-      />
+      /> 
 
-      {products.length === 0 && (
+                {products.length === 0 && (
         <div className="text-center mt-4">
           <Link href="/">
             <Button className="w-full sm:w-auto">হোম পেজে ফিরে যান</Button>

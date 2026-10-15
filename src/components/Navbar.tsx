@@ -74,33 +74,33 @@ export function Navbar() {
   const isActive = (slug: string) => pathname === `/category/${slug}` || (slug === 'chal' && pathname === '/');
 
   return (
-    <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
       {/* Top Row - Logo & Date */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3" aria-label="বাজার দর - হোম">
             <span className="text-2xl">🛒</span>
             <div>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">বাজার দর</span>
-              <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">{banglaDate}</p>
+              <span className="text-xl font-bold text-gray-900">বাজার দর</span>
+              <p className="text-xs text-gray-500 font-medium">{banglaDate}</p>
             </div>
           </Link>
 
           {/* Desktop Auth Buttons / User Menu */}
           <div className="hidden md:flex items-center gap-2">
             {sessionLoading ? (
-              <div className="h-9 w-20 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
+              <div className="h-9 w-20 bg-gray-200 rounded animate-pulse" />
             ) : session?.user ? (
               <div className="relative">
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors"
                   aria-expanded={userMenuOpen}
                 >
                   <span className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-sm">
                     {session.user.name ? session.user.name[0].toUpperCase() : '👤'}
                   </span>
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <span className="text-sm font-medium text-gray-700">
                     {session.user.name || 'ব্যবহারকারী'}
                   </span>
                   <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -109,25 +109,25 @@ export function Navbar() {
                 </button>
 
                 {userMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50 animate-scale-in">
-                    <div className="px-4 py-2 border-b border-gray-100 dark:border-gray-700">
-                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-1 z-50 animate-scale-in">
+                    <div className="px-4 py-2 border-b border-gray-100">
+                      <p className="text-sm font-medium text-gray-900 truncate">
                         {session.user.name}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                      <p className="text-xs text-gray-500 truncate">
                         {session.user.email}
                       </p>
                     </div>
                     <Link
                       href="/profile/update"
                       onClick={() => setUserMenuOpen(false)}
-                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors"
                     >
                       ✏️ প্রোফাইল আপডেট
                     </Link>
                     <button
                       onClick={handleSignOut}
-                      className="w-full text-left px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                     >
                       🚪 লগআউট
                     </button>
@@ -148,7 +148,7 @@ export function Navbar() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
@@ -166,7 +166,7 @@ export function Navbar() {
       </div>
 
       {/* Category Navigation Row */}
-      <nav className="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700" aria-label="ক্যাটেগরি নেভিগেশন">
+      <nav className="bg-gray-50 border-t border-gray-200" aria-label="ক্যাটেগরি নেভিগেশন">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-1 overflow-x-auto pb-2 px-2 -mx-2" role="tablist">
             {categories.map((cat) => (
@@ -177,7 +177,7 @@ export function Navbar() {
                   'flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors',
                   isActive(cat.slug)
                     ? 'bg-primary text-primary-foreground shadow-sm'
-                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
+                    : 'text-gray-600 hover:bg-gray-200'
                 )}
                 role="tab"
                 aria-selected={isActive(cat.slug)}
@@ -193,7 +193,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div id="mobile-menu" className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 animate-slide-down">
+        <div id="mobile-menu" className="md:hidden bg-white border-t border-gray-200 animate-slide-down">
           <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
             <nav className="flex flex-wrap gap-2" aria-label="মোবাইল ক্যাটেগরি">
               {categories.map((cat) => (
@@ -204,7 +204,7 @@ export function Navbar() {
                     'flex items-center gap-1.5 px-3 py-2 rounded-full text-sm font-medium transition-colors',
                     isActive(cat.slug)
                       ? 'bg-primary text-primary-foreground'
-                      : 'text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800'
+                      : 'text-gray-600 bg-gray-100'
                   )}
                 >
                   <span aria-hidden="true">{cat.icon}</span>
@@ -212,12 +212,13 @@ export function Navbar() {
                 </Link>
               ))}
             </nav>
-            <div className="flex flex-col gap-2 pt-4 border-t border-gray-200 dark:border-gray-800">
+            <div className="flex flex-col gap-2 pt-4 border-t border-gray-200">
               {session?.user ? (
                 <>
-                  <div className="px-3 py-2 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                    <p className="text-sm font-semibold text-gray-900 dark:text-white">{session.user.name}</p>
+                  <div className="px-3 py-2 bg-gray-50 rounded-lg">
+                    <p className="text-sm font-semibold text-gray-900">{session.user.name}</p>
                     <p className="text-xs text-gray-500">{session.user.email}</p>
+
                   </div>
                   <Link href="/profile/update" onClick={() => setMobileMenuOpen(false)}>
                     <Button variant="outline" className="w-full">✏️ প্রোফাইল আপডেট</Button>
@@ -249,40 +250,40 @@ export function Navbar() {
       )}
 
       {/* Price Ticker Marquee */}
-      <div className="bg-primary/10 dark:bg-primary/20 border-t border-gray-200 dark:border-gray-800 overflow-hidden">
+      <div className="bg-primary/10 border-t border-gray-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex animate-marquee" aria-live="polite" aria-label="দামের টিকর">
             {tickerItems.map((item, i) => (
               <div key={i} className="flex items-center gap-2 px-4 py-2 whitespace-nowrap shrink-0">
                 <span className="text-lg">{item.emoji}</span>
-                <span className="font-medium text-gray-900 dark:text-white">{item.name}</span>
-                <span className="text-gray-600 dark:text-gray-300">{item.price}</span>
+                <span className="font-medium text-gray-900">{item.name}</span>
+                <span className="text-gray-600">{item.price}</span>
                 <span className={cn(
                   'font-medium px-2 py-0.5 rounded text-sm',
-                  item.change.startsWith('▲') ? 'text-green-600 bg-green-50 dark:bg-green-900/30' :
-                  item.change.startsWith('▼') ? 'text-red-600 bg-red-50 dark:bg-red-900/30' :
-                  'text-gray-500 bg-gray-100 dark:bg-gray-800'
+                  item.change.startsWith('▲') ? 'text-green-600 bg-green-50' :
+                  item.change.startsWith('▼') ? 'text-red-600 bg-red-50' :
+                  'text-gray-500 bg-gray-100'
                 )}>
                   {item.change}
                 </span>
-                <span className="text-gray-300 dark:text-gray-600 mx-2">•</span>
+                <span className="text-gray-300 mx-2">•</span>
               </div>
             ))}
             {/* Duplicate for seamless loop */}
             {tickerItems.map((item, i) => (
               <div key={`dup-${i}`} className="flex items-center gap-2 px-4 py-2 whitespace-nowrap shrink-0">
                 <span className="text-lg">{item.emoji}</span>
-                <span className="font-medium text-gray-900 dark:text-white">{item.name}</span>
-                <span className="text-gray-600 dark:text-gray-300">{item.price}</span>
+                <span className="font-medium text-gray-900">{item.name}</span>
+                <span className="text-gray-600">{item.price}</span>
                 <span className={cn(
                   'font-medium px-2 py-0.5 rounded text-sm',
-                  item.change.startsWith('▲') ? 'text-green-600 bg-green-50 dark:bg-green-900/30' :
-                  item.change.startsWith('▼') ? 'text-red-600 bg-red-50 dark:bg-red-900/30' :
-                  'text-gray-500 bg-gray-100 dark:bg-gray-800'
+                  item.change.startsWith('▲') ? 'text-green-600 bg-green-50' :
+                  item.change.startsWith('▼') ? 'text-red-600 bg-red-50' :
+                  'text-gray-500 bg-gray-100'
                 )}>
                   {item.change}
                 </span>
-                <span className="text-gray-300 dark:text-gray-600 mx-2">•</span>
+                <span className="text-gray-300 mx-2">•</span>
               </div>
             ))}
           </div>

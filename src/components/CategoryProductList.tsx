@@ -18,7 +18,7 @@ export function CategoryProductList({
 }: CategoryProductListProps) {
   const [sort, setSort] = useState<SortOption>('default');
 
-  const sortedProducts = useMemo(() => {
+             const sortedProducts = useMemo(() => {
     const list = [...products];
     switch (sort) {
       case 'price-asc':
@@ -42,7 +42,7 @@ export function CategoryProductList({
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
               {categoryName}
             </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
               মোট {products.length} টি পণ্য
             </p>
           </div>

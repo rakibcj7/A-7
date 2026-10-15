@@ -53,27 +53,27 @@ export default function SignUpPage() {
         callbackURL: '/',
       });
     } catch {
-      toast.error(`${provider === 'google' ? 'Google' : 'GitHub'} দিয়ে সাইন আপ করতে সমস্যা হয়েছে।`);
+                  toast.error(`${provider === 'google' ? 'Google' : 'GitHub'} দিয়ে সাইন আপ করতে সমস্যা হয়েছে।`);
       setLoadingProvider(null);
     }
   };
 
   return (
     <div className="container py-12 md:py-20">
-      <div className="max-w-md mx-auto bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
+      <div className="max-w-md mx-auto bg-white p-8 rounded-2xl border border-[#E5E7EB] shadow-[0_1px_2px_rgba(17,17,17,0.04)]">
         <div className="text-center mb-8">
           <span className="text-4xl mb-3 inline-block">🛒</span>
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+          <h1 className="text-2xl font-bold text-[#111111] mb-2">
             নতুন একাউন্ট খুলুন
           </h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-[#4B5563]">
             ইমেইল, Google বা GitHub এর মাধ্যমে একাউন্ট তৈরি করুন
           </p>
         </div>
 
-        <form onSubmit={handleEmailSignUp} className="space-y-4">
+                  <form onSubmit={handleEmailSignUp} className="space-y-4">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+            <label htmlFor="name" className="block text-sm font-medium text-[#374151] mb-1.5">
               নাম
             </label>
             <input
@@ -87,8 +87,8 @@ export default function SignUpPage() {
             />
           </div>
 
-          <div>
-            <label htmlFor="signup-email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+                  <div>
+            <label htmlFor="signup-email" className="block text-sm font-medium text-[#374151] mb-1.5">
               ইমেইল
             </label>
             <input
@@ -103,8 +103,8 @@ export default function SignUpPage() {
           </div>
 
           <div>
-            <label htmlFor="signup-password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-              পাসওয়ার্ড
+            <label htmlFor="signup-password" className="block text-sm font-medium text-[#374151] mb-1.5">
+                        পাসওয়ার্ড
             </label>
             <input
               id="signup-password"
@@ -124,10 +124,10 @@ export default function SignUpPage() {
 
         <div className="relative my-6">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-200 dark:border-gray-700" />
+            <div className="w-full border-t border-[#E5E7EB]" />
           </div>
-          <div className="relative flex justify-center text-xs uppercase tracking-[0.2em] text-gray-400">
-            <span className="bg-white dark:bg-gray-800 px-3">অথবা</span>
+          <div className="relative flex justify-center text-xs uppercase tracking-[0.2em] text-[#9CA3AF]">
+            <span className="bg-white px-3">অথবা</span>
           </div>
         </div>
 
@@ -174,15 +174,15 @@ export default function SignUpPage() {
           </Button>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700 text-center space-y-3">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+        <div className="mt-8 pt-6 border-t border-[#F1F5F9] text-center space-y-3">
+          <p className="text-sm text-[#4B5563]">
             ইতিমধ্যে একাউন্ট আছে?{' '}
             <Link href="/signin" className="text-primary hover:underline font-medium">
               সাইন ইন করুন
             </Link>
           </p>
           <div>
-            <Link href="/" className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+            <Link href="/" className="text-sm text-[#6B7280] hover:text-[#111111]">
               ← হোম পেজে ফিরে যান
             </Link>
           </div>
